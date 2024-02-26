@@ -37,20 +37,27 @@ app.get('/todo',async(req,res) =>{
     }
 })
 
-app.put('/completed',async(req,res) => {
-    const updatepayload = req.body;
-    const parsedpayload = updateid.safeParse(updatepayload);
-    if(!parsedpayload.success){
-        res.status(400).send(parsedpayload.error);
+app.put('/todo', async (req, res) => {
+    const updatePayload = req.body;
+    const parsedPayload = updateid.safeParse(updatePayload);
+    if (!parsedPayload.success) {
+        res.status(400).send(parsedPayload.error);
         return;
     }
 
-    await todos.update(
-        { _id: updateid.id },  // Filter by document ID
-        { $set: { completed: true } }     // Update operation: Set the status to "active"
-     )
-    
-})
+    const ans = await todos.updateOne(
+        { _id: req.body.id },  // Filter by document ID
+        { completed: true }    // Update operation: Set the status to "active"
+    );
+
+    if(ans){
+        res.send("todo is updated");
+    }
+    else{
+        res.send("some error")
+    }
+});
+
 
 
 app.listen(3000, () => {"Server is running on port 3000"});
