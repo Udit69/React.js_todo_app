@@ -28,9 +28,9 @@ app.post('/todos',async (req, res) => {
 })  
 
 app.get('/todo',async(req,res) =>{
-    const todos =await todos.find({})
-    if(todos){
-        res.send(todos);
+    const tod = await todos.find({})
+    if(tod){
+        res.send(tod);
     }
     else{
         res.status(401).send("FAILED TO FETCH");
