@@ -3,8 +3,10 @@ const app = express();
 const { CreateTodo } = require('./zod');
 const { updateid } = require('./zod');
 const { todos } = require('./database/index')
+const cors = require('cors')
 
 app.use(express.json());
+app.use(cors({}))
 
 app.get('/', (req, res) => { 
     res.send("Hello World");
