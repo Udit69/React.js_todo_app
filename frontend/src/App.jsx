@@ -1,16 +1,26 @@
-import React from 'react'; // Import React
-import './App.css'; // Import CSS file
-import { Createtodo } from "./components/createtodo.jsx"; 
-import { Todos } from "./components/todos.jsx";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { CreateTodo } from './components/CreateTodo'
+import { Todos } from './components/Todos'
 
+// useEffect hook
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  // fetch("http://localhost:3000/todo")
+  //   .then(async function(res) {
+  //     const json = await res.json();
+  //     setTodos(json.todos);
+  //   })
+
   return (
     <div>
-      <Createtodo />
-      <Todos />
+      <CreateTodo></CreateTodo>
+      <Todos todos={todos}></Todos>
     </div>
-  );
+  )
 }
 
-export default App;
-
+export default App

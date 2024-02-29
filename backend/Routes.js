@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 app.post('/todos',async (req, res) => {
     const createpayload = req.body;
-    const parsedpayload = CreateTodo.safeParse(createpayload);
+    const parsedpayload = await CreateTodo.safeParse(createpayload);
     if(!parsedpayload.success){
         res.status(400).send(parsedpayload.error);
         return;
